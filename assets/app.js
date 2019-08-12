@@ -4,17 +4,17 @@ var buttonText = '';
 var searchText = '';
 var searchButton = document.getElementById('search');
 
+//function that creates the button and puts in the button text for each button
 function getButtons() {
     for (i = 0; i < rugby.length; i++) {
 
-        console.log(rugby);
-        let gifButtons = "<button id='gifButton'></button>";
-        document.getElementsByClassName('Box').append(gifButtons)
+        var gifButtons = document.createElement('button');
+        gifButtons.classList.add('gifButtons');
+        let buttonText = rugby[i]; 
+        gifButtons.innerText = buttonText;
+        document.body.appendChild(gifButtons)
 
     }
-}
-
-    
 
 };
 
