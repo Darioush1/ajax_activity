@@ -46,7 +46,17 @@ function getText() {
   let searchText = this.buttonText
   console.log(searchText)
   let giphyUrl= "api.giphy.com/v1/gifs/search?&q=" + searchText + "&api_key=iBag6lGxhBwV0gHDqNYT40XlbhPwKaoO&limit=10"
-  console.log(giphyUrl)
+  console.log(this.giphyUrl)
 };
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       console.log(xhttp.responseText);
+    }
+};
+xhttp.open("GET", giphyUrl, true);
+xhttp.send();
+
 
 
