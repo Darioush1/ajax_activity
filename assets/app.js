@@ -20,16 +20,25 @@ $(document).ready(function(){
 function ajaxCall() {
   $.ajax({
     url: giphyLink + searchText1 + apiKey,
-    method: get
+    method: 'GET'
   }).then(function (response) {
-    console.log(response);
+    console.log(response)
+    console.log(response.embed_url)
+    var gif = $('<img/>').attr({
+      id: 'gif' + response.slug,
+      src: response.embed_url,
+      alt: response.slug,
+      title: response.slug,
+      width: 300,
+    }).appendTo('.gifsHere')
+    console.log(response.slug + ' ' + response.embed_url );
   });
 };
 
 
 // this function gets the text from the button. it is loggin correctly, searchText is showing correctly, but giphy api does not have the search text
 function getText() {
-  let searchText = this.buttonText
+  
   console.log(searchText);
   // let giphyUrl= api.giphy.com/v1/gifs/search?&q=' + searchText + '&api_key=iBag6lGxhBwV0gHDqNYT40XlbhPwKaoO&limit=10'";
   // console.log(giphyUrl)
@@ -46,7 +55,10 @@ function getButtons() {
     var newButton = $('<button/>', {
       text: buttonText,
       class: 'gifButtons',
-      click: function() {console.log('buttons work')} 
+      click: function() {
+        let searchText = buttonText;
+        ajaxCall();
+        console.log('This is the search:' + searchText)} 
     });
     //this adds the class gifButtons to the og object so we can add things to it in java/css
     
@@ -57,8 +69,7 @@ function getButtons() {
 };
 
 $('.gifButtons').on('click', function () {
- ajaxCall();
- console.log('button works')
+ 
 })
 
 
