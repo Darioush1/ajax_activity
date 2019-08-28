@@ -57,7 +57,7 @@ function getButtons() {
             //var p = $('<p>').text(results.embed_url);
             var gif = $('<img>');
             gif = $('<img/>').attr('src', results[i].images.fixed_height.url);
-            gif.appendTo('.gifDiv')
+            gif.appendTo('.gifsHere')
             // console.log('inside loop ' + response)
 
           }
