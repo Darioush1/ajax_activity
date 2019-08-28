@@ -1,5 +1,32 @@
 .gifButtons {
-    background-color: orange;
-    margin: 10px
+    background-color: #0c34b6;
+    margin: 5px;
+    padding: 5px;
+    align-self: center;
+    color: white;
+}
+
+header{
+    width: 100%;
+    background-color: #e4e4e4;
+    text-align: center;
+    font-size: 35px;
+}
+
+body {
+    background-color: rgb(150, 98, 30);
+}
+
+.box {
+    margin-top: 10px;
+    width: 100%;
+    background-color: #e4e4e4;
+    text-align: center;
+
+}
+
+.searchBox{
+    float: right;
+    margin-top: 5px;
 
 }

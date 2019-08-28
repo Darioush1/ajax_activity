@@ -4,7 +4,7 @@ var buttonText = '';
 var searchText = '';
 var searchText1 = '&q=' + searchText;
 var searchButton = document.getElementById('search');
-var giphyLink = "http://api.giphy.com/v1/gifs/search?";
+var giphyLink = "http://api.giphy.com/v1/gifs/search?&q=";
 var apiKey = "&api_key=iBag6lGxhBwV0gHDqNYT40XlbhPwKaoO&limit=10";
 var gifButtons;
 
@@ -17,29 +17,11 @@ $(document).ready(function () {
 });
 
 
-function ajaxCall() {
-  $.ajax({
-    url: giphyLink + searchText1 + apiKey,
-    method: 'GET'
-  }).then(function (response) {
-    var results = response.data;
-    for (i = 0; i < rugby.length; i++) {
-
-      var gifDiv = $('<div>');
-      var p = $('<p>').text(searchText.embed_url);
-      var gif = $('<img>');
-      gif = $('<img/>').attr('src', results[i].images.fixed_height.url);
-      gif.appendTo('.gifDiv')
-      console.log(response.data.embed_url);
-      
-    }
-  });
-};
 
 // this function gets the text from the button. it is loggin correctly, searchText is showing correctly, but giphy api does not have the search text
 function getText() {
 
-  console.log(searchText);
+  // console.log(searchText);
   // let giphyUrl= api.giphy.com/v1/gifs/search?&q=' + searchText + '&api_key=iBag6lGxhBwV0gHDqNYT40XlbhPwKaoO&limit=10'";
   // console.log(giphyUrl)
 };
@@ -57,14 +39,36 @@ function getButtons() {
       class: 'gifButtons',
       click: function () {
         let searchText = buttonText;
-        var queryURL = giphyLink + searchText1 + apiKey;
-        console.log('search text: ' + searchText)
-        console.log(queryURL);
-        ajaxCall();
+        var queryURL = giphyLink + searchText + apiKey;
+        // console.log('search text: ' + searchText)
+        // console.log(queryURL);
+
+        $.ajax({
+          url: queryURL,
+          method: 'GET'
+        }).then(function (response) {
+          //ask the ta's about this
+          var results = response.data;
+          // console.log('outside loop' + response)
+          for (i = 0; i < rugby.length; i++) {
+            console.log(results[0].images.fixed_height.url)
+
+            var gifDiv = $('<div>');
+            //var p = $('<p>').text(results.embed_url);
+            var gif = $('<img>');
+            gif = $('<img/>').attr('src', results[i].images.fixed_height.url);
+            gif.appendTo('.gifDiv')
+            // console.log('inside loop ' + response)
+
+          }
+        });
       }
     });
     $('.box').append(newButton);
   }
 }
-  
+
     //this adds the class gifButtons to the og object so we can add things to it in java/css
+
+
+
